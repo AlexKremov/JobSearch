@@ -8,9 +8,8 @@ export const getJobs = (): AxiosPromise<Job[]> => {
     return axios.get('/');
   };
 
-
   export const getResumes = (
-    queryParams: FilterType = { level: '', tags: [] }
+    queryParams = { level: '', tags: [], experience: ''  }
   ): AxiosPromise<Resume[]> => {
     return axios.get('/resumes', {
       params: queryParams

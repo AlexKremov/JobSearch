@@ -9,6 +9,7 @@ export enum Level {
     name: string,
     experience: number,
     level: keyof typeof Level,
-    tags: string[]
+    tags: string[],
+    avatar: string
   }
   

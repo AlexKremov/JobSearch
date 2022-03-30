@@ -6,15 +6,16 @@ import { ResumeState, setResumes } from './resumes';
 import { AppState } from './rootReducer';
 import Resume from '../types/Resume';
 
+
 export type FilterType = {
-  experience?: number,
+  // experience: number,
   level: keyof typeof Level | '',
   tags: string[]
 }
 
 type Props = {
-  onUpdateLevel(value: keyof typeof Level): void,
-  onUpdateTags(value: string[]): void,
+  // onUpdateLevel(value: keyof typeof Level): void,
+  // onUpdateTags(value: string[]): void,
   search: FilterType,
   list: Resume[],
 }
@@ -34,31 +35,36 @@ export const useResumes = (): Props => {
     });
   }, [dispatch]);
 
-  const onUpdateLevel = (levelValue: keyof typeof Level | '') => {
-    const newSearch = {
-      ...search,
-      level: levelValue
-    };
-    setSearch(newSearch);
-    getResumes(newSearch).then(res => {
-      dispatch(setResumes(res.data));
-    });
-  }
+  // const onUpdateLevel = (levelValue: keyof typeof Level | '') => {
+  //   const newSearch = {
+  //     ...search,
+  //     level: levelValue
+  //   };
+  //   setSearch(newSearch);
+  //   getResumes(newSearch).then(res => {
+  //     dispatch(setResumes(res.data));
+  //   });
+  // }
 
-  const onUpdateTags = (tags: []) => {
-    const newSearch = {
-      ...search,
-      tags: tags
-    };
-    setSearch(newSearch);
-    getResumes(newSearch).then(res => {
-      dispatch(setResumes(res.data));
-    });
-  }
+  // const onUpdateTags = (tags: []) => {
+  //   const newSearch = {
+  //     ...search,
+  //     tags: tags
+  //   };
+
+  //   const onUpdateExp = (expirience: number) => {
+  //     const newSearch = {
+  //       ...search,
+  //       expirience: expirience
+  //     }
+  //   }
+  //   setSearch(newSearch);
+  //   getResumes(newSearch).then(res => {
+  //     dispatch(setResumes(res.data));
+  //   });
+  // }
 
   return {
-    onUpdateTags,
-    onUpdateLevel,
     search,
     list,
   };
