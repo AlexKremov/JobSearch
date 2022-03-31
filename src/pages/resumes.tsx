@@ -5,7 +5,10 @@ import ResumeItem from "../components/ResumeItem";
 import { useResumes } from "../init/useResumes";
 import SelectTags from "../components/SelectTags";
 import SelectExperience from "../components/SelectExperience";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getResumes } from "../api/queries";
+import { setResumes } from "../init/resumes";
 
 const Body = styled.div`
   display: flex;
@@ -18,10 +21,52 @@ const ResumeFilters = styled.div`
 `;
 
 export default function Resumes() {
-  const { list  } = useResumes();
-  const [level, setLevel] = useState("");
-  const [experience, setExperience] = useState("");
-  const [tags, setTags] = useState([]);
+  const { list } = useResumes();
+  const [search, setSearch] = React.useState({
+    level: "",
+    tags: [],
+    experience: "",
+  });
+
+  const dispatch = useDispatch();
+
+  const handleSelectTags = (selectedTags) => {
+    const newSearch = {
+      ...search,
+      tags: selectedTags,
+    };
+
+    setSearch(newSearch);
+
+    getResumes(newSearch).then((res) => {
+      dispatch(setResumes(res.data));
+    });
+  };
+
+  const handleSelectExperience = (value) => {
+    const newSearch = {
+      ...search,
+      experience: value,
+    };
+    setSearch(newSearch);
+
+    getResumes(newSearch).then((res) => {
+      dispatch(setResumes(res.data));
+    });
+  };
+
+  const handleSelectlevel = (value) => {
+    const newSearch = {
+      ...search,
+      level: value,
+    };
+
+    setSearch(newSearch);
+
+    getResumes(newSearch).then((res) => {
+      dispatch(setResumes(res.data));
+    });
+  };
 
   return (
     <MainLayout>
@@ -32,9 +77,15 @@ export default function Resumes() {
           ))}
         </div>
         <ResumeFilters>
-          <SelectTags tags={tags} setTags={setTags} level={level} experience={experience} />
-          <SelectLevel level={level} setLevel={setLevel} tags={tags} experience={experience} />
-          <SelectExperience level={level} tags={tags} setExperience={setExperience} experience={experience} />
+          <SelectTags tags={search.tags} handleSelectTags={handleSelectTags} />
+          <SelectLevel
+            level={search.level}
+            handleSelectlevel={handleSelectlevel}
+          />
+          <SelectExperience
+            experience={search.experience}
+            handleSelectExperience={handleSelectExperience}
+          />
         </ResumeFilters>
       </Body>
     </MainLayout>

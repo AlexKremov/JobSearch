@@ -1,35 +1,24 @@
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import ListItemText from "@mui/material/ListItemText";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Checkbox from "@mui/material/Checkbox";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import ListItemText from '@mui/material/ListItemText';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import Checkbox from '@mui/material/Checkbox';
-import React from 'react';
-import { getResumes } from '../api/queries';
-import { useDispatch, useSelector } from 'react-redux';
-import { setResumes } from '../init/resumes';
+const names = ["react", "php", "typescript", "redux", "html", "css"];
 
-const names = ['react', 'php', 'typescript', 'redux', 'html', 'css'];
+export default function MultipleSelectCheckmarks({ tags, handleSelectTags }) {
 
-export default function MultipleSelectCheckmarks({tags, setTags, level, experience}) {
-  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    const selectedTags = typeof value === 'string' ? value.split(',') : value
-    setTags(
-      selectedTags
-    );
-    getResumes({ level, tags: selectedTags, experience} )
-      .then(
-        res => {
-          dispatch(setResumes(res.data))
-        }
-      )
+    const selectedTags = typeof value === "string" ? value.split(",") : value;
+    handleSelectTags(selectedTags);
   };
 
   return (

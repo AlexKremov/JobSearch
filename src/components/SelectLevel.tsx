@@ -1,14 +1,11 @@
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { Level } from '../types/Resume';
-import React from 'react';
-import { getResumes } from '../api/queries';
-import { useDispatch, useSelector } from 'react-redux';
-import { setResumes } from '../init/resumes';
-
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { Level } from "../types/Resume";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 // type Props = {
 //   level: keyof typeof Level | '',
@@ -16,22 +13,12 @@ import { setResumes } from '../init/resumes';
 //   tags: string[] | ''
 // };
 
-export default function BasicSelect({level, setLevel, tags, experience}) {
-  const dispatch = useDispatch();
+export default function BasicSelect({ level, handleSelectlevel }) {
   const handleChange = (event: SelectChangeEvent) => {
-    setLevel(event.target.value as string);
-
-    getResumes({ level: event.target.value, tags, experience })
-      .then(
-        res => {
-          dispatch(setResumes(res.data))
-        }
-      )
-   
+    handleSelectlevel(event.target.value as string);
   };
 
   return (
-
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth sx={{ m: 1, width: 300 }}>
         <InputLabel id="demo-simple-select-label">Level</InputLabel>
@@ -48,6 +35,5 @@ export default function BasicSelect({level, setLevel, tags, experience}) {
         </Select>
       </FormControl>
     </Box>
-
   );
 }
