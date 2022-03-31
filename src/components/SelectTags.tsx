@@ -6,13 +6,10 @@ import ListItemText from "@mui/material/ListItemText";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 const names = ["react", "php", "typescript", "redux", "html", "css"];
 
 export default function MultipleSelectCheckmarks({ tags, handleSelectTags }) {
-
-
   const handleChange = (event) => {
     const {
       target: { value },

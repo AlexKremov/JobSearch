@@ -5,7 +5,7 @@ import Resume from '../types/Resume';
 import { FilterType } from '../init/useResumes';
 
 export const getJobs = (): AxiosPromise<Job[]> => {
-    return axios.get('/');
+    return axios.get('/jobs');
   };
 
   export const getResumes = (

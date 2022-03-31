@@ -21,52 +21,13 @@ const ResumeFilters = styled.div`
 `;
 
 export default function Resumes() {
-  const { list } = useResumes();
-  const [search, setSearch] = React.useState({
-    level: "",
-    tags: [],
-    experience: "",
-  });
-
-  const dispatch = useDispatch();
-
-  const handleSelectTags = (selectedTags) => {
-    const newSearch = {
-      ...search,
-      tags: selectedTags,
-    };
-
-    setSearch(newSearch);
-
-    getResumes(newSearch).then((res) => {
-      dispatch(setResumes(res.data));
-    });
-  };
-
-  const handleSelectExperience = (value) => {
-    const newSearch = {
-      ...search,
-      experience: value,
-    };
-    setSearch(newSearch);
-
-    getResumes(newSearch).then((res) => {
-      dispatch(setResumes(res.data));
-    });
-  };
-
-  const handleSelectlevel = (value) => {
-    const newSearch = {
-      ...search,
-      level: value,
-    };
-
-    setSearch(newSearch);
-
-    getResumes(newSearch).then((res) => {
-      dispatch(setResumes(res.data));
-    });
-  };
+  const {
+    list,
+    search,
+    handleSelectTags,
+    handleSelectExperience,
+    handleSelectlevel,
+  } = useResumes();
 
   return (
     <MainLayout>
