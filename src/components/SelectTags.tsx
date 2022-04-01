@@ -9,8 +9,13 @@ import React from "react";
 
 const names = ["react", "php", "typescript", "redux", "html", "css"];
 
-export default function MultipleSelectCheckmarks({ tags, handleSelectTags }) {
-  const handleChange = (event) => {
+type Props = {
+  tags: string[],
+  handleSelectTags(value: string[]): void;
+}
+
+export default function MultipleSelectCheckmarks({ tags, handleSelectTags }: Props) {
+  const handleChange = (event: SelectChangeEvent<typeof tags>) => {
     const {
       target: { value },
     } = event;

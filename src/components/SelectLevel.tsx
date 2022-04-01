@@ -5,15 +5,13 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { Level } from "../types/Resume";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 
-// type Props = {
-//   level: keyof typeof Level | '',
-//   setLevel(param: string): void,
-//   tags: string[] | ''
-// };
+type Props = {
+  level: keyof typeof Level | "";
+  handleSelectlevel(value: string): void
+};
 
-export default function BasicSelect({ level, handleSelectlevel }) {
+export default function BasicSelect({ level, handleSelectlevel }: Props) {
   const handleChange = (event: SelectChangeEvent) => {
     handleSelectlevel(event.target.value as string);
   };

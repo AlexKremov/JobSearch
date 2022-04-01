@@ -11,10 +11,15 @@ const InpurSearch = styled.input`
   }
 `;
 
+type Props = {
+  experience: string;
+  handleSelectExperience(value: string): void;
+};
+
 export default function ExperienceSelect({
   experience,
   handleSelectExperience,
-}) {
+}: Props) {
   const handleChange = (event) => {
     handleSelectExperience(event.target.value);
   };
