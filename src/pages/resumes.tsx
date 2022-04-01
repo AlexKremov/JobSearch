@@ -5,10 +5,6 @@ import ResumeItem from "../components/ResumeItem";
 import { useResumes } from "../init/useResumes";
 import SelectTags from "../components/SelectTags";
 import SelectExperience from "../components/SelectExperience";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getResumes } from "../api/queries";
-import { setResumes } from "../init/resumes";
 
 const Body = styled.div`
   display: flex;
@@ -16,7 +12,7 @@ const Body = styled.div`
 `;
 
 const ResumeFilters = styled.div`
-  padding-left: 50%;
+  padding-left: 45%;
   display: block;
 `;
 

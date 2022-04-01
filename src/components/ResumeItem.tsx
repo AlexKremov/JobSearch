@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Avatar from "@mui/material/Avatar";
 
 const Body = styled.div`
-  width: 400%;
+  width: 300%;
 `;
 
 const ResumeItem: FC<Resume> = ({ name, level, tags, experience, avatar }) => {

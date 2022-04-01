@@ -7,21 +7,22 @@ import { AppState } from "./rootReducer";
 import Resume from "../types/Resume";
 
 export type FilterType = {
-  // experience: number,
+  experience: string;
   level: keyof typeof Level | "";
   tags: string[];
 };
 
-// type Props = {
-//   // onUpdateLevel(value: keyof typeof Level): void,
-//   // onUpdateTags(value: string[]): void,
-//   search: FilterType,
-//   list: Resume[],
-// }
+type Props = {
+  handleSelectTags(value: string[]): void;
+  handleSelectExperience(value: string): void;
+  handleSelectlevel(value: keyof typeof Level | ""): void;
+  search: FilterType;
+  list: Resume[];
+};
 
-export const useResumes = () => {
+export const useResumes = (): Props => {
   const dispatch = useDispatch();
-  const [search, setSearch] = React.useState({
+  const [search, setSearch] = React.useState<FilterType>({
     level: "",
     tags: [],
     experience: "",
@@ -35,7 +36,7 @@ export const useResumes = () => {
     });
   }, [dispatch]);
 
-  const handleSelectTags = (selectedTags) => {
+  const handleSelectTags = (selectedTags: []) => {
     const newSearch = {
       ...search,
       tags: selectedTags,
@@ -60,7 +61,7 @@ export const useResumes = () => {
     });
   };
 
-  const handleSelectlevel = (value) => {
+  const handleSelectlevel = (value: keyof typeof Level | "") => {
     const newSearch = {
       ...search,
       level: value,
