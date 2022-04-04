@@ -1,6 +1,6 @@
-import Resume from '../types/Resume';
+import Resume from "../types/Resume";
 
-export const SET_RESUME = 'SET_RESUME';
+export const SET_RESUME = "SET_RESUME";
 
 export type setResumesAction = {
   type: typeof SET_RESUME;
