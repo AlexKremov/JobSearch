@@ -5,6 +5,7 @@ import ResumeItem from "../components/ResumeItem";
 import { useResumes } from "../init/useResumes";
 import SelectTags from "../components/SelectTags";
 import SelectExperience from "../components/SelectExperience";
+import Pagination from "@mui/material/Pagination";
 
 const Body = styled.div`
   display: flex;
@@ -23,12 +24,19 @@ export default function Resumes() {
     handleSelectTags,
     handleSelectExperience,
     handleSelectlevel,
+    handleChangePage,
+    total,
   } = useResumes();
+
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    handleChangePage(value);
+  };
 
   return (
     <MainLayout>
       <Body>
         <div>
+          <Pagination count={Math.ceil(total / 25)} onChange={handleChange} />
           {list.map((resume) => (
             <ResumeItem key={resume.id} {...resume} />
           ))}

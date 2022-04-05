@@ -16,6 +16,8 @@ type Props = {
   handleSelectTags(value: string[]): void;
   handleSelectExperience(value: string): void;
   handleSelectlevel(value: keyof typeof Level | ""): void;
+  handleChangePage(value: number): void;
+  total: number;
   search: FilterType;
   list: Resume[];
 };
@@ -30,8 +32,11 @@ export const useResumes = (): Props => {
 
   const { list } = useSelector<AppState, ResumeState>((state) => state.resumes);
 
+  const [total, setTotal] = React.useState(0);
+
   React.useEffect(() => {
     getResumes().then((res) => {
+      setTotal(res.data.total);
       dispatch(setResumes(res.data.list));
     });
   }, [dispatch]);
@@ -45,6 +50,7 @@ export const useResumes = (): Props => {
     setSearch(newSearch);
 
     getResumes(newSearch).then((res) => {
+      setTotal(res.data.total);
       dispatch(setResumes(res.data.list));
     });
   };
@@ -57,6 +63,21 @@ export const useResumes = (): Props => {
     setSearch(newSearch);
 
     getResumes(newSearch).then((res) => {
+      setTotal(res.data.total);
+      dispatch(setResumes(res.data.list));
+    });
+  };
+
+  const handleChangePage = (page: number) => {
+    const newSearch = {
+      ...search,
+      page: page,
+    };
+
+    setSearch(newSearch);
+
+    getResumes(newSearch).then((res) => {
+      setTotal(res.data.total);
       dispatch(setResumes(res.data.list));
     });
   };
@@ -70,6 +91,7 @@ export const useResumes = (): Props => {
     setSearch(newSearch);
 
     getResumes(newSearch).then((res) => {
+      setTotal(res.data.total);
       dispatch(setResumes(res.data.list));
     });
   };
@@ -77,8 +99,10 @@ export const useResumes = (): Props => {
   return {
     search,
     list,
+    total,
     handleSelectTags,
     handleSelectExperience,
     handleSelectlevel,
+    handleChangePage,
   };
 };

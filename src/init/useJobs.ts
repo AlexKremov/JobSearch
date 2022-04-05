@@ -38,11 +38,11 @@ export const useJobs = (): Props => {
 
   const { list } = useSelector<AppState, JobState>((state) => state.jobs);
 
-  const [total, setTotal] = React.useState(0)
+  const [total, setTotal] = React.useState(0);
 
   React.useEffect(() => {
     getJobs().then((res) => {
-      setTotal(res.data.total)
+      setTotal(res.data.total);
       dispatch(setJobs(res.data.list));
     });
   }, [dispatch]);
@@ -56,7 +56,7 @@ export const useJobs = (): Props => {
     setSearch(newSearch);
 
     getJobs(newSearch).then((res) => {
-      setTotal(res.data.total)
+      setTotal(res.data.total);
       dispatch(setJobs(res.data.list));
     });
   };
@@ -70,7 +70,7 @@ export const useJobs = (): Props => {
     setSearch(newSearch);
 
     getJobs(newSearch).then((res) => {
-      setTotal(res.data.total)
+      setTotal(res.data.total);
       dispatch(setJobs(res.data.list));
     });
   };
@@ -84,7 +84,7 @@ export const useJobs = (): Props => {
     setSearch(newSearch);
 
     getJobs(newSearch).then((res) => {
-      setTotal(res.data.total)
+      setTotal(res.data.total);
       dispatch(setJobs(res.data.list));
     });
   };
@@ -98,7 +98,7 @@ export const useJobs = (): Props => {
     setSearch(newSearch);
 
     getJobs(newSearch).then((res) => {
-      setTotal(res.data.total)
+      setTotal(res.data.total);
       dispatch(setJobs(res.data.list));
     });
   };
@@ -112,7 +112,7 @@ export const useJobs = (): Props => {
     setSearch(newSearch);
 
     getJobs(newSearch).then((res) => {
-      setTotal(res.data.total)
+      setTotal(res.data.total);
       dispatch(setJobs(res.data.list));
     });
   };
@@ -126,10 +126,10 @@ export const useJobs = (): Props => {
     setSearch(newSearch);
 
     getJobs(newSearch).then((res) => {
-      setTotal(res.data.total)
+      setTotal(res.data.total);
       dispatch(setJobs(res.data.list));
     });
-    console.log(list)
+    console.log(list);
   };
 
   return {
@@ -141,6 +141,6 @@ export const useJobs = (): Props => {
     handleSelectSalary,
     handleSelectActivity,
     handleSelectSkills,
-    handleChangePage
+    handleChangePage,
   };
 };

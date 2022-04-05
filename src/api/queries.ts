@@ -13,7 +13,7 @@ export const getJobs = (
     activity: [],
     skills: [],
   }
-): AxiosPromise<{list: Job[], total: number}> => {
+): AxiosPromise<{ list: Job[]; total: number }> => {
   return axios.get("/jobs", {
     params: queryParams,
   });
@@ -21,7 +21,7 @@ export const getJobs = (
 
 export const getResumes = (
   queryParams: FilterType = { level: "", tags: [], experience: "" }
-): AxiosPromise<{list: Resume[], total: number}> => {
+): AxiosPromise<{ list: Resume[]; total: number }> => {
   return axios.get("/resumes", {
     params: queryParams,
   });

@@ -31,7 +31,7 @@ function App() {
     handleSelectActivity,
     handleSelectSkills,
     handleChangePage,
-    total
+    total,
   } = useJobs();
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
@@ -41,9 +41,8 @@ function App() {
   return (
     <MainLayout>
       <Body>
-        <div></div>
         <div>
-          <Pagination count={Math.ceil(total/25)} onChange={handleChange}/>
+          <Pagination count={Math.ceil(total / 25)} onChange={handleChange} />
           {list.map((job) => (
             <JobItem key={job.id} {...job} />
           ))}
