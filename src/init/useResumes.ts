@@ -32,7 +32,7 @@ export const useResumes = (): Props => {
 
   React.useEffect(() => {
     getResumes().then((res) => {
-      dispatch(setResumes(res.data));
+      dispatch(setResumes(res.data.list));
     });
   }, [dispatch]);
 
@@ -45,11 +45,11 @@ export const useResumes = (): Props => {
     setSearch(newSearch);
 
     getResumes(newSearch).then((res) => {
-      dispatch(setResumes(res.data));
+      dispatch(setResumes(res.data.list));
     });
   };
 
-  const handleSelectExperience = (value) => {
+  const handleSelectExperience = (value: string) => {
     const newSearch = {
       ...search,
       experience: value,
@@ -57,7 +57,7 @@ export const useResumes = (): Props => {
     setSearch(newSearch);
 
     getResumes(newSearch).then((res) => {
-      dispatch(setResumes(res.data));
+      dispatch(setResumes(res.data.list));
     });
   };
 
@@ -70,7 +70,7 @@ export const useResumes = (): Props => {
     setSearch(newSearch);
 
     getResumes(newSearch).then((res) => {
-      dispatch(setResumes(res.data));
+      dispatch(setResumes(res.data.list));
     });
   };
 

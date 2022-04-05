@@ -3,35 +3,36 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormGroup from "@mui/material/FormGroup";
 import React from "react";
 
-type ActivityNames = {
+type SkillsNames = {
   [key: string]: string;
 };
 
-const names: ActivityNames = {
-  frontend: "Frontend",
-  backend: "Backend",
-  applications: "Applications",
-  software: "Software",
-  twsting: "Testing",
-  administration: "Administration",
-};
-
-type Props = {
-  handleSelectActivity(value: string[]): void;
-};
-
-type ActivityType = {
+type SkillsType = {
   [key: string]: boolean;
 };
 
-export default function SelectActivity({ handleSelectActivity }: Props) {
-  const [listGroup, setListGroup] = React.useState<ActivityType>({
-    frontend: false,
-    backend: false,
-    applications: false,
-    software: false,
-    twsting: false,
-    administration: false,
+const names: SkillsNames = {
+  ruby: "Ruby",
+  mysql: "Mysql",
+  rubyOnRails: "Ruby on Rails",
+  html: "Html",
+  react: "React",
+  css: "Css",
+  redux: "Redux",
+};
+type Props = {
+  handleSelectSkills(value: string[]): void;
+};
+
+export default function SelectSkills({ handleSelectSkills }: Props) {
+  const [listGroup, setListGroup] = React.useState<SkillsType>({
+    ruby: false,
+    mysql: false,
+    rubyOnRails: false,
+    html: false,
+    react: false,
+    css: false,
+    redux: false,
   });
 
   return (
@@ -48,10 +49,10 @@ export default function SelectActivity({ handleSelectActivity }: Props) {
                   [name]: event.target.checked,
                 };
                 setListGroup(data);
-                let selectedActivity = Object.keys(data).filter((key) => {
+                let selectedSkills = Object.keys(data).filter((key) => {
                   return data[key] === true;
                 });
-                handleSelectActivity(selectedActivity);
+                handleSelectSkills(selectedSkills);
               }}
               checked={listGroup[name]}
             />

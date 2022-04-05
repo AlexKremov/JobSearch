@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 const Body = styled.div`
   margin-bottom: 20px;
+  margin-top: 30px;
 `;
 
 const JobItem: FC<Job> = ({ title, company, salary, avatar, currency, rating, activity, skills, created_at }: Job) => {

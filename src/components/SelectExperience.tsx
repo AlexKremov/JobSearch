@@ -20,7 +20,7 @@ export default function ExperienceSelect({
   experience,
   handleSelectExperience,
 }: Props) {
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     handleSelectExperience(event.target.value);
   };
 

@@ -9,15 +9,19 @@ import Job from "../types/Job";
 export type JobFilterType = {
   level: keyof typeof Level | "";
   currency: string | "";
-  salary: number | "";
+  salary: number;
   activity: string[];
+  skills: string[];
 };
 
 type Props = {
+  handleSelectSkills(value: string[]): void;
   handleSelectActivity(value: string[]): void;
   handleSelectlevel(value: keyof typeof Level | ""): void;
   handleSelectCurrency(value: string | ""): void;
-  handleSelectSalary(value): void;
+  handleSelectSalary(value: number): void;
+  handleChangePage(value: number): void;
+  total: number;
   search: JobFilterType;
   list: Job[];
 };
@@ -29,15 +33,33 @@ export const useJobs = (): Props => {
     currency: "",
     salary: 0,
     activity: [],
+    skills: [],
   });
 
   const { list } = useSelector<AppState, JobState>((state) => state.jobs);
 
+  const [total, setTotal] = React.useState(0)
+
   React.useEffect(() => {
     getJobs().then((res) => {
-      dispatch(setJobs(res.data));
+      setTotal(res.data.total)
+      dispatch(setJobs(res.data.list));
     });
   }, [dispatch]);
+
+  const handleChangePage = (page: number) => {
+    const newSearch = {
+      ...search,
+      page: page,
+    };
+
+    setSearch(newSearch);
+
+    getJobs(newSearch).then((res) => {
+      setTotal(res.data.total)
+      dispatch(setJobs(res.data.list));
+    });
+  };
 
   const handleSelectlevel = (value: keyof typeof Level | "") => {
     const newSearch = {
@@ -48,7 +70,8 @@ export const useJobs = (): Props => {
     setSearch(newSearch);
 
     getJobs(newSearch).then((res) => {
-      dispatch(setJobs(res.data));
+      setTotal(res.data.total)
+      dispatch(setJobs(res.data.list));
     });
   };
 
@@ -61,11 +84,12 @@ export const useJobs = (): Props => {
     setSearch(newSearch);
 
     getJobs(newSearch).then((res) => {
-      dispatch(setJobs(res.data));
+      setTotal(res.data.total)
+      dispatch(setJobs(res.data.list));
     });
   };
 
-  const handleSelectSalary = (value) => {
+  const handleSelectSalary = (value: number) => {
     const newSearch = {
       ...search,
       salary: value,
@@ -74,7 +98,8 @@ export const useJobs = (): Props => {
     setSearch(newSearch);
 
     getJobs(newSearch).then((res) => {
-      dispatch(setJobs(res.data));
+      setTotal(res.data.total)
+      dispatch(setJobs(res.data.list));
     });
   };
 
@@ -87,16 +112,35 @@ export const useJobs = (): Props => {
     setSearch(newSearch);
 
     getJobs(newSearch).then((res) => {
-      dispatch(setJobs(res.data));
+      setTotal(res.data.total)
+      dispatch(setJobs(res.data.list));
     });
+  };
+
+  const handleSelectSkills = (selectedSkills: []) => {
+    const newSearch = {
+      ...search,
+      skills: selectedSkills,
+    };
+
+    setSearch(newSearch);
+
+    getJobs(newSearch).then((res) => {
+      setTotal(res.data.total)
+      dispatch(setJobs(res.data.list));
+    });
+    console.log(list)
   };
 
   return {
     list,
     search,
+    total,
     handleSelectlevel,
     handleSelectCurrency,
     handleSelectSalary,
     handleSelectActivity,
+    handleSelectSkills,
+    handleChangePage
   };
 };

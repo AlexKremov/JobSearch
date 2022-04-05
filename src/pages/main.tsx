@@ -6,6 +6,8 @@ import SelectSalary from "../components/SelectSalary";
 import SelectCurrency from "../components/SelectCurrency";
 import SelectLevel from "../components/SelectLevel";
 import SelectActivity from "../components/SelectActivity";
+import SelectSkills from "../components/SelectSkills";
+import Pagination from "@mui/material/Pagination";
 
 const Body = styled.div`
   display: flex;
@@ -13,7 +15,7 @@ const Body = styled.div`
 `;
 
 const Filters = styled.div`
-  padding-left: 25%;
+  padding-left: 300px;
 `;
 const SalaryField = styled.div`
   display: flex;
@@ -27,12 +29,21 @@ function App() {
     handleSelectCurrency,
     handleSelectSalary,
     handleSelectActivity,
+    handleSelectSkills,
+    handleChangePage,
+    total
   } = useJobs();
+
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    handleChangePage(value);
+  };
 
   return (
     <MainLayout>
       <Body>
+        <div></div>
         <div>
+          <Pagination count={Math.ceil(total/25)} onChange={handleChange}/>
           {list.map((job) => (
             <JobItem key={job.id} {...job} />
           ))}
@@ -53,6 +64,7 @@ function App() {
               handleSelectCurrency={handleSelectCurrency}
             />
           </SalaryField>
+          <SelectSkills handleSelectSkills={handleSelectSkills} />
         </Filters>
       </Body>
     </MainLayout>
