@@ -1,7 +1,14 @@
 export default interface Job {
-    id: number,
-    title: string,
-    company: string,
-    salary: number,
-  }
-  
+  id: number;
+  title: string;
+  level: string;
+  salary: number;
+  company: string;
+  avatar: string;
+  rating: string;
+  activity: string[];
+  created_at: string;
+  is_salary: boolean;
+  skills: string[];
+  currency: string;
+}

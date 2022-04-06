@@ -1,13 +1,13 @@
-import styled from 'styled-components';
-import MainLayout from '../layouts/mainlayout';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
-import { useJobs } from '../init/useJobs';
-import JobItem from '../components/JobItem';
-import TextField from '@mui/material/TextField';
-import BasicSelect from '../components/Cash'
-import LevelSelect from '../components/Level';
+import styled from "styled-components";
+import MainLayout from "../layouts/mainlayout";
+import { useJobs } from "../init/useJobs";
+import JobItem from "../components/JobItem";
+import SelectSalary from "../components/SelectSalary";
+import SelectCurrency from "../components/SelectCurrency";
+import SelectLevel from "../components/SelectLevel";
+import SelectActivity from "../components/SelectActivity";
+import SelectSkills from "../components/SelectSkills";
+import Pagination from "@mui/material/Pagination";
 
 const Body = styled.div`
   display: flex;
@@ -15,65 +15,59 @@ const Body = styled.div`
 `;
 
 const Filters = styled.div`
-padding-left: 50%;
-`
+  padding-left: 300px;
+`;
 const SalaryField = styled.div`
-display: flex;
-`
-
+  display: flex;
+`;
 
 function App() {
-  const { list } = useJobs();
+  const {
+    list,
+    search,
+    handleSelectlevel,
+    handleSelectCurrency,
+    handleSelectSalary,
+    handleSelectActivity,
+    handleSelectSkills,
+    handleChangePage,
+    total,
+  } = useJobs();
 
-    return (
-      <MainLayout>
-        <Body>
-          <div>
-        {list.map((job) => (
-          <JobItem
-            key={job.id}
-            title={job.title}
-            salary={job.salary}
-            company={job.company}
-          />
-        ))}
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    handleChangePage(value);
+  };
+
+  return (
+    <MainLayout>
+      <Body>
+        <div>
+          <Pagination count={Math.ceil(total / 25)} onChange={handleChange} />
+          {list.map((job) => (
+            <JobItem key={job.id} {...job} />
+          ))}
         </div>
         <Filters>
-          <FormGroup sx={{  m: 1}}>
-            <FormControlLabel
-              control={<Checkbox size="small" />}
-              label="Frontend"
-            />
-            <FormControlLabel
-              control={<Checkbox size="small" />}
-              label="Backend"
-            />
-            <FormControlLabel
-              control={<Checkbox size="small" />}
-              label="Applications"
-            />
-            <FormControlLabel
-              control={<Checkbox size='small' />}
-              label="Software development"
-            />
-            <FormControlLabel
-              control={<Checkbox size="small" />}
-              label="Testing"
-            />
-            <FormControlLabel
-              control={<Checkbox size="small" />}
-              label="Administration"
-            />
-          </FormGroup>
-          <LevelSelect />
+          <SelectActivity handleSelectActivity={handleSelectActivity} />
+          <SelectLevel
+            level={search.level}
+            handleSelectlevel={handleSelectlevel}
+          />
           <SalaryField>
-          <TextField size='small' inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} sx={{  m: 1}} type='number' />
-          <BasicSelect />
+            <SelectSalary
+              salary={search.salary}
+              handleSelectSalary={handleSelectSalary}
+            />
+            <SelectCurrency
+              currency={search.currency}
+              handleSelectCurrency={handleSelectCurrency}
+            />
           </SalaryField>
-          </Filters>
-        </Body>
-      </MainLayout>
-    );
+          <SelectSkills handleSelectSkills={handleSelectSkills} />
+        </Filters>
+      </Body>
+    </MainLayout>
+  );
 }
 
 export default App;

@@ -1,65 +1,108 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getResumes } from '../api/queries';
-import { Level } from '../types/Resume';
-import { ResumeState, setResumes } from './resumes';
-import { AppState } from './rootReducer';
-import Resume from '../types/Resume';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getResumes } from "../api/queries";
+import { Level } from "../types/Resume";
+import { ResumeState, setResumes } from "./resumes";
+import { AppState } from "./rootReducer";
+import Resume from "../types/Resume";
 
 export type FilterType = {
-  experience?: number,
-  level: keyof typeof Level | '',
-  tags: string[]
-}
+  experience: string;
+  level: keyof typeof Level | "";
+  tags: string[];
+};
 
 type Props = {
-  onUpdateLevel(value: keyof typeof Level): void,
-  onUpdateTags(value: string[]): void,
-  search: FilterType,
-  list: Resume[],
-}
+  handleSelectTags(value: string[]): void;
+  handleSelectExperience(value: string): void;
+  handleSelectlevel(value: keyof typeof Level | ""): void;
+  handleChangePage(value: number): void;
+  total: number;
+  search: FilterType;
+  list: Resume[];
+};
 
 export const useResumes = (): Props => {
   const dispatch = useDispatch();
   const [search, setSearch] = React.useState<FilterType>({
-    tags: [], 
-    level: ''
+    level: "",
+    tags: [],
+    experience: "",
   });
 
   const { list } = useSelector<AppState, ResumeState>((state) => state.resumes);
 
+  const [total, setTotal] = React.useState(0);
+
   React.useEffect(() => {
     getResumes().then((res) => {
-      dispatch(setResumes(res.data));
+      setTotal(res.data.total);
+      dispatch(setResumes(res.data.list));
     });
   }, [dispatch]);
 
-  const onUpdateLevel = (levelValue: keyof typeof Level | '') => {
+  const handleSelectTags = (selectedTags: []) => {
     const newSearch = {
       ...search,
-      level: levelValue
+      tags: selectedTags,
     };
-    setSearch(newSearch);
-    getResumes(newSearch).then(res => {
-      dispatch(setResumes(res.data));
-    });
-  }
 
-  const onUpdateTags = (tags: []) => {
+    setSearch(newSearch);
+
+    getResumes(newSearch).then((res) => {
+      setTotal(res.data.total);
+      dispatch(setResumes(res.data.list));
+    });
+  };
+
+  const handleSelectExperience = (value: string) => {
     const newSearch = {
       ...search,
-      tags: tags
+      experience: value,
     };
     setSearch(newSearch);
-    getResumes(newSearch).then(res => {
-      dispatch(setResumes(res.data));
+
+    getResumes(newSearch).then((res) => {
+      setTotal(res.data.total);
+      dispatch(setResumes(res.data.list));
     });
-  }
+  };
+
+  const handleChangePage = (page: number) => {
+    const newSearch = {
+      ...search,
+      page: page,
+    };
+
+    setSearch(newSearch);
+
+    getResumes(newSearch).then((res) => {
+      setTotal(res.data.total);
+      dispatch(setResumes(res.data.list));
+    });
+  };
+
+  const handleSelectlevel = (value: keyof typeof Level | "") => {
+    const newSearch = {
+      ...search,
+      level: value,
+    };
+
+    setSearch(newSearch);
+
+    getResumes(newSearch).then((res) => {
+      setTotal(res.data.total);
+      dispatch(setResumes(res.data.list));
+    });
+  };
 
   return {
-    onUpdateTags,
-    onUpdateLevel,
     search,
     list,
+    total,
+    handleSelectTags,
+    handleSelectExperience,
+    handleSelectlevel,
+    handleChangePage,
   };
 };
