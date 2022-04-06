@@ -129,7 +129,6 @@ export const useJobs = (): Props => {
       setTotal(res.data.total);
       dispatch(setJobs(res.data.list));
     });
-    console.log(list);
   };
 
   return {

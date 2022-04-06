@@ -1,11 +1,3 @@
-// export enum Activity {
-//   Backend = 'Backend',
-//   Design = 'Design',
-//   Frontend ='Frontend',
-//   Testing = 'Testing',
-//   Administration = 'Administration'
-// }
-
 export default interface Job {
   id: number;
   title: string;
