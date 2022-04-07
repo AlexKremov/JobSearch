@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './index.css';
 import Companies from './pages/companies';
+
 import Resumes from './pages/resumes';
 import Vacancies from './pages/vacancies'
 import Main from './pages/main';
