@@ -15,7 +15,7 @@ const Body = styled.div`
 `;
 
 const Filters = styled.div`
-  padding-left: 300px;
+  padding-left: 250px;
 `;
 const SalaryField = styled.div`
   display: flex;

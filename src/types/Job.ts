@@ -5,7 +5,7 @@ export default interface Job {
   salary: number;
   company: string;
   avatar: string;
-  rating: string;
+  rating: number;
   activity: string[];
   created_at: string;
   is_salary: boolean;

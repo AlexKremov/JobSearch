@@ -5,7 +5,6 @@ import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
-import React from "react";
 
 const names = ["react", "php", "typescript", "redux", "html", "css"];
 
