@@ -71,19 +71,6 @@ const Page = (props: Props) => {
                   })
                 );
               }}
-              handleSuperLike={() => {
-                setCompanyRating(
-                  companyRating.map((company) => {
-                    if (company.name === item.name) {
-                      return {
-                        name: company.name,
-                        value: Number(company.value) + 10,
-                      };
-                    }
-                    return company;
-                  })
-                );
-              }}
               handleDislike={() => {
                 setCompanyRating(
                   companyRating.map((company) => {
@@ -91,19 +78,6 @@ const Page = (props: Props) => {
                       return {
                         name: company.name,
                         value: Number(company.value) - 5,
-                      };
-                    }
-                    return company;
-                  })
-                );
-              }}
-              handleSuperDislike={() => {
-                setCompanyRating(
-                  companyRating.map((company) => {
-                    if (company.name === item.name) {
-                      return {
-                        name: company.name,
-                        value: Number(company.value) - 10,
                       };
                     }
                     return company;

@@ -4,24 +4,27 @@ export const SET_GRAPHICS = 'SET_GRAPHICS';
 
 export type setGraphicsAction = {
   type: typeof SET_GRAPHICS;
-  payload: Graphics[];
+  payload: Graphics;
 };
 
 interface State {
-  list: Graphics[];
+  graphics: Graphics;
 }
 
 const initialState = {
-  list: [],
+  graphics: {
+    salary_medium_per_month: [],
+    activity_count: []
+  },
 };
 
 type Action = setGraphicsAction;
 
 export type GraphicsState = {
-  list: Graphics[];
+  graphics: Graphics;
 };
 
-export function setGraphics(payload: Graphics[]): Action {
+export function setGraphics(payload: Graphics): Action {
   return {
     type: SET_GRAPHICS,
     payload,
@@ -32,7 +35,7 @@ export const graphics = (state: State = initialState, action: Action): State => 
   switch (action.type) {
     case SET_GRAPHICS: {
       return {
-        list: action.payload,
+        graphics: action.payload,
       };
     }
     default:

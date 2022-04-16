@@ -11,58 +11,31 @@ const Body = styled.div`
 type Props = {
   handleLike: () => void;
   handleDislike: () => void;
-  handleSuperLike: () => void;
-  handleSuperDislike: () => void;
 };
 
 export default function LikeButton(props: Props) {
-  const [on, setOn] = React.useState(false);
-  const [off, setOff] = React.useState(false);
+  const [disabled, setDisabled] = React.useState(false);
 
   const handleChange1 = (event: React.MouseEvent<HTMLElement>) => {
-    if (on === false) {
-      setOn(true);
-      setOff(false);
+      setDisabled(true)
       props.handleLike();
     }
-    if (on === true && off === false) {
-      setOn(false);
-      props.handleDislike();
-    }
-    if (off === true && on === false) {
-      setOn(true);
-      setOff(false);
-      props.handleSuperLike();
-    }
-  };
+  
   const handleChange2 = (event: React.MouseEvent<HTMLElement>) => {
-    if (off === false && on === false) {
-      setOff(true);
-      setOn(false);
+    setDisabled(true)
       props.handleDislike();
-    }
-    if (off === true && on === false) {
-      setOff(false);
-
-      props.handleLike();
-    }
-    if (on === true && off === false) {
-      setOn(false);
-      setOff(true);
-      props.handleSuperDislike();
-    }
   };
   return (
     <Body>
       <IconButton
-        disabled={on}
+        disabled={disabled}
         onClick={handleChange1}
         disableFocusRipple={true}
       >
         <ThumbUpIcon />
       </IconButton>
       <IconButton
-        disabled={off}
+        disabled={disabled}
         onClick={handleChange2}
         disableFocusRipple={true}
       >
@@ -70,4 +43,4 @@ export default function LikeButton(props: Props) {
       </IconButton>
     </Body>
   );
-}
+  }

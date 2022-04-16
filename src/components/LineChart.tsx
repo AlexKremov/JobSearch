@@ -4,7 +4,7 @@ import { useGraphics } from "../init/useGraphics";
 
 const Page: React.FC = () => {
 
-  const { salary_medium_per_month } = useGraphics();
+  const { graphics } = useGraphics();
   const option = {
     title: {
       text: "Average monthly salary",
@@ -41,7 +41,7 @@ const Page: React.FC = () => {
         
         type: "line",
         areaStyle: { normal: {} },
-        data: salary_medium_per_month,
+        data: graphics.salary_medium_per_month,
       },
     
     ],

@@ -3,11 +3,11 @@ import ReactECharts from "echarts-for-react";
 import { useGraphics } from "../init/useGraphics";
 
 const Page: React.FC = () => {
-  const { activity_count } = useGraphics();
-  const names = activity_count.map(element => {
+  const { graphics } = useGraphics();
+  const names = graphics.activity_count.map(element => {
     return Object.keys(element)[0];
   })
-  const salary = activity_count.map(element => {
+  const salary = graphics.activity_count.map(element => {
     return Object.values(element)[0];
   })
 
