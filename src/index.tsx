@@ -2,9 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Companies from "./pages/companies";
-
 import Resumes from "./pages/resumes";
-import Vacancies from "./pages/vacancies";
 import Main from "./pages/main";
 import reportWebVitals from "./reportWebVitals";
 import { store } from "./init/store";
@@ -19,7 +17,6 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/resumes" element={<Resumes />} />
-          <Route path="/vacancies" element={<Vacancies />} />
           <Route path="/companies" element={<Companies />} />
           <Route path="/salaries" element={<Salaries />} />
           <Route path="/profile" element={<Profile />} />
