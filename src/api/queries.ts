@@ -26,3 +26,16 @@ export const getResumes = (
     params: queryParams,
   });
 };
+
+type Activity = {
+  [key: string]: number
+}
+
+type Graphics = {
+  salary_medium_per_month: string[];
+  activity_count: Activity[]
+}
+
+export const getGraphics = (): AxiosPromise<Graphics> => {
+  return axios.get("/graphs"); 
+};

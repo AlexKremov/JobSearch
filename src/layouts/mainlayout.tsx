@@ -33,7 +33,6 @@ function MainLayout({children}: Props) {
     <Container>
       <Header>
         <Link to="/">Main</Link>
-        <Link to="/vacancies">Jobs</Link>
         <Link to="/resumes">Resumes</Link>
         <Link to="/companies">Companies</Link>
         <Link to="/salaries">Salaries</Link>
