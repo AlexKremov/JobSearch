@@ -64,8 +64,7 @@ function Page(props: Props) {
                     if (company.name === item.name) {
                       return {
                         name: company.name,
-                        value:
-                                                    Number(company.value) + 5,
+                        value: Number(company.value) + 5,
                       };
                     }
                     return company;
