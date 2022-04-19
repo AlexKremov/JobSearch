@@ -1,36 +1,36 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getJobs } from "../api/queries";
-import { JobState, setJobs } from "./jobs";
-import { AppState } from "./rootReducer";
-import { Level } from "../types/Resume";
-import Job from "../types/Job";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getJobs } from '../api/queries';
+import { JobState, setJobs } from './jobs';
+import { AppState } from './rootReducer';
+import { Level } from '../types/Resume';
+import Job from '../types/Job';
 
 export type JobFilterType = {
-  level: keyof typeof Level | "";
-  currency: string | "";
-  salary: number;
-  activity: string[];
-  skills: string[];
+  level: keyof typeof Level | ''
+  currency: string | ''
+  salary: number
+  activity: string[]
+  skills: string[]
 };
 
 type Props = {
-  handleSelectSkills(value: string[]): void;
-  handleSelectActivity(value: string[]): void;
-  handleSelectlevel(value: keyof typeof Level | ""): void;
-  handleSelectCurrency(value: string | ""): void;
-  handleSelectSalary(value: number): void;
-  handleChangePage(value: number): void;
-  total: number;
-  search: JobFilterType;
-  list: Job[];
+  handleSelectSkills(value: string[]): void
+  handleSelectActivity(value: string[]): void
+  handleSelectlevel(value: keyof typeof Level | ''): void
+  handleSelectCurrency(value: string | ''): void
+  handleSelectSalary(value: number): void
+  handleChangePage(value: number): void
+  total: number
+  search: JobFilterType
+  list: Job[]
 };
 
 export const useJobs = (): Props => {
   const dispatch = useDispatch();
   const [search, setSearch] = React.useState<JobFilterType>({
-    level: "",
-    currency: "",
+    level: '',
+    currency: '',
     salary: 0,
     activity: [],
     skills: [],
@@ -50,7 +50,7 @@ export const useJobs = (): Props => {
   const handleChangePage = (page: number) => {
     const newSearch = {
       ...search,
-      page: page,
+      page,
     };
 
     setSearch(newSearch);
@@ -61,7 +61,7 @@ export const useJobs = (): Props => {
     });
   };
 
-  const handleSelectlevel = (value: keyof typeof Level | "") => {
+  const handleSelectlevel = (value: keyof typeof Level | '') => {
     const newSearch = {
       ...search,
       level: value,
@@ -75,7 +75,7 @@ export const useJobs = (): Props => {
     });
   };
 
-  const handleSelectCurrency = (value: string | "") => {
+  const handleSelectCurrency = (value: string | '') => {
     const newSearch = {
       ...search,
       currency: value,

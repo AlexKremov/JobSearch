@@ -2,23 +2,23 @@ import Job from '../types/Job';
 
 export const SET_JOBS = 'SET_JOBS';
 
-export type setJobsAction = {
-  type: typeof SET_JOBS;
-  payload: Job[];
+export type SetJobsAction = {
+  type: typeof SET_JOBS
+  payload: Job[]
 };
 
 interface State {
-  list: Job[];
+  list: Job[]
 }
 
 const initialState = {
   list: [],
 };
 
-type Action = setJobsAction;
+type Action = SetJobsAction;
 
 export type JobState = {
-  list: Job[];
+  list: Job[]
 };
 
 export function setJobs(payload: Job[]): Action {
@@ -28,7 +28,7 @@ export function setJobs(payload: Job[]): Action {
   };
 }
 
-export const jobs = (state: State = initialState, action: Action): State => {
+export const jobs = (action: Action, state: State = initialState): State => {
   switch (action.type) {
     case SET_JOBS: {
       return {

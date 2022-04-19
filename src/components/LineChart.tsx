@@ -1,49 +1,59 @@
-import React from "react";
-import ReactECharts from "echarts-for-react";
-import { useGraphics } from "../init/useGraphics";
+import React from 'react';
+import ReactECharts from 'echarts-for-react';
+import { useGraphics } from '../init/useGraphics';
 
 const Page: React.FC = () => {
-
   const { graphics } = useGraphics();
   const option = {
     title: {
-      text: "Average monthly salary",
+      text: 'Average monthly salary',
     },
     tooltip: {
-      trigger: "axis",
+      trigger: 'axis',
     },
-    
+
     toolbox: {
       feature: {
         saveAsImage: {},
       },
     },
     grid: {
-      left: "7%",
-      right: "3%",
-      bottom: "3%",
+      left: '7%',
+      right: '3%',
+      bottom: '3%',
       containLabel: true,
     },
     xAxis: [
       {
-        type: "category",
+        type: 'category',
         boundaryGap: false,
-        data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+        data: [
+          'Jan',
+          'Feb',
+          'Mar',
+          'Apr',
+          'May',
+          'Jun',
+          'Jul',
+          'Aug',
+          'Sept',
+          'Oct',
+          'Nov',
+          'Dec',
+        ],
       },
     ],
     yAxis: [
       {
-        type: "value",
+        type: 'value',
       },
     ],
     series: [
       {
-        
-        type: "line",
+        type: 'line',
         areaStyle: { normal: {} },
         data: graphics.salary_medium_per_month,
       },
-    
     ],
   };
 

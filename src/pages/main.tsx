@@ -1,24 +1,24 @@
-import styled from "styled-components";
-import MainLayout from "../layouts/mainlayout";
-import { useJobs } from "../init/useJobs";
-import JobItem from "../components/JobItem";
-import SelectSalary from "../components/SelectSalary";
-import SelectCurrency from "../components/SelectCurrency";
-import SelectLevel from "../components/SelectLevel";
-import SelectActivity from "../components/SelectActivity";
-import SelectSkills from "../components/SelectSkills";
-import Pagination from "@mui/material/Pagination";
+import styled from 'styled-components';
+import Pagination from '@mui/material/Pagination';
+import MainLayout from '../layouts/mainlayout';
+import { useJobs } from '../init/useJobs';
+import JobItem from '../components/JobItem';
+import SelectSalary from '../components/SelectSalary';
+import SelectCurrency from '../components/SelectCurrency';
+import SelectLevel from '../components/SelectLevel';
+import SelectActivity from '../components/SelectActivity';
+import SelectSkills from '../components/SelectSkills';
 
 const Body = styled.div`
-  display: flex;
-  flex-flow: row wrap;
+    display: flex;
+    flex-flow: row wrap;
 `;
 
 const Filters = styled.div`
-  padding-left: 250px;
+    padding-left: 250px;
 `;
 const SalaryField = styled.div`
-  display: flex;
+    display: flex;
 `;
 
 function App() {
@@ -42,13 +42,18 @@ function App() {
     <MainLayout>
       <Body>
         <div>
-          <Pagination count={Math.ceil(total / 25)} onChange={handleChange} />
+          <Pagination
+            count={Math.ceil(total / 25)}
+            onChange={handleChange}
+          />
           {list.map((job) => (
             <JobItem key={job.id} {...job} />
           ))}
         </div>
         <Filters>
-          <SelectActivity handleSelectActivity={handleSelectActivity} />
+          <SelectActivity
+            handleSelectActivity={handleSelectActivity}
+          />
           <SelectLevel
             level={search.level}
             handleSelectlevel={handleSelectlevel}

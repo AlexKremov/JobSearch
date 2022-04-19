@@ -1,27 +1,27 @@
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormGroup from "@mui/material/FormGroup";
-import React from "react";
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
+import React from 'react';
 
 type ActivityNames = {
-  [key: string]: string;
+  [key: string]: string
 };
 
 const names: ActivityNames = {
-  frontend: "Frontend",
-  backend: "Backend",
-  applications: "Applications",
-  software: "Software",
-  twsting: "Testing",
-  administration: "Administration",
+  frontend: 'Frontend',
+  backend: 'Backend',
+  applications: 'Applications',
+  software: 'Software',
+  twsting: 'Testing',
+  administration: 'Administration',
 };
 
 type Props = {
-  handleSelectActivity(value: string[]): void;
+  handleSelectActivity(value: string[]): void
 };
 
 type ActivityType = {
-  [key: string]: boolean;
+  [key: string]: boolean
 };
 
 export default function SelectActivity({ handleSelectActivity }: Props) {
@@ -39,23 +39,25 @@ export default function SelectActivity({ handleSelectActivity }: Props) {
       {Object.keys(names).map((name) => (
         <FormControlLabel
           key={name}
-          control={
+          control={(
             <Checkbox
               size="small"
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              onChange={(
+                event: React.ChangeEvent<HTMLInputElement>
+              ) => {
                 const data = {
                   ...listGroup,
                   [name]: event.target.checked,
                 };
                 setListGroup(data);
-                let selectedActivity = Object.keys(data).filter((key) => {
-                  return data[key] === true;
-                });
+                const selectedActivity = Object.keys(
+                  data
+                ).filter((key) => data[key] === true);
                 handleSelectActivity(selectedActivity);
               }}
               checked={listGroup[name]}
             />
-          }
+                      )}
           label={names[name]}
         />
       ))}

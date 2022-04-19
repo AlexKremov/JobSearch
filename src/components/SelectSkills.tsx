@@ -1,27 +1,27 @@
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormGroup from "@mui/material/FormGroup";
-import React from "react";
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
+import React from 'react';
 
 type SkillsNames = {
-  [key: string]: string;
+  [key: string]: string
 };
 
 type SkillsType = {
-  [key: string]: boolean;
+  [key: string]: boolean
 };
 
 const names: SkillsNames = {
-  ruby: "Ruby",
-  mysql: "Mysql",
-  rubyOnRails: "Ruby on Rails",
-  html: "Html",
-  react: "React",
-  css: "Css",
-  redux: "Redux",
+  ruby: 'Ruby',
+  mysql: 'Mysql',
+  rubyOnRails: 'Ruby on Rails',
+  html: 'Html',
+  react: 'React',
+  css: 'Css',
+  redux: 'Redux',
 };
 type Props = {
-  handleSelectSkills(value: string[]): void;
+  handleSelectSkills(value: string[]): void
 };
 
 export default function SelectSkills({ handleSelectSkills }: Props) {
@@ -40,23 +40,25 @@ export default function SelectSkills({ handleSelectSkills }: Props) {
       {Object.keys(names).map((name) => (
         <FormControlLabel
           key={name}
-          control={
+          control={(
             <Checkbox
               size="small"
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              onChange={(
+                event: React.ChangeEvent<HTMLInputElement>
+              ) => {
                 const data = {
                   ...listGroup,
                   [name]: event.target.checked,
                 };
                 setListGroup(data);
-                let selectedSkills = Object.keys(data).filter((key) => {
-                  return data[key] === true;
-                });
+                const selectedSkills = Object.keys(data).filter(
+                  (key) => data[key] === true
+                );
                 handleSelectSkills(selectedSkills);
               }}
               checked={listGroup[name]}
             />
-          }
+                      )}
           label={names[name]}
         />
       ))}

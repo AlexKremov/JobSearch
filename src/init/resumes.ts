@@ -1,24 +1,24 @@
-import Resume from "../types/Resume";
+import Resume from '../types/Resume';
 
-export const SET_RESUME = "SET_RESUME";
+export const SET_RESUME = 'SET_RESUME';
 
-export type setResumesAction = {
-  type: typeof SET_RESUME;
-  payload: Resume[];
+export type SetResumesAction = {
+  type: typeof SET_RESUME
+  payload: Resume[]
 };
 
 interface State {
-  list: Resume[];
+  list: Resume[]
 }
 
 const initialState = {
   list: [],
 };
 
-type Action = setResumesAction;
+type Action = SetResumesAction;
 
 export type ResumeState = {
-  list: Resume[];
+  list: Resume[]
 };
 
 export function setResumes(payload: Resume[]): Action {
@@ -28,7 +28,7 @@ export function setResumes(payload: Resume[]): Action {
   };
 }
 
-export const resumes = (state: State = initialState, action: Action): State => {
+export const resumes = (action: Action, state: State = initialState): State => {
   switch (action.type) {
     case SET_RESUME: {
       return {

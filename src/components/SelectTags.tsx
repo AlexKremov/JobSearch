@@ -1,16 +1,16 @@
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import ListItemText from "@mui/material/ListItemText";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import Checkbox from "@mui/material/Checkbox";
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import ListItemText from '@mui/material/ListItemText';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Checkbox from '@mui/material/Checkbox';
 
-const names = ["react", "php", "typescript", "redux", "html", "css"];
+const names = ['react', 'php', 'typescript', 'redux', 'html', 'css'];
 
 type Props = {
-  tags: string[];
-  handleSelectTags(value: string[]): void;
+  tags: string[]
+  handleSelectTags(value: string[]): void
 };
 
 export default function MultipleSelectCheckmarks({
@@ -21,7 +21,7 @@ export default function MultipleSelectCheckmarks({
     const {
       target: { value },
     } = event;
-    const selectedTags = typeof value === "string" ? value.split(",") : value;
+    const selectedTags = typeof value === 'string' ? value.split(',') : value;
     handleSelectTags(selectedTags);
   };
 
@@ -36,7 +36,7 @@ export default function MultipleSelectCheckmarks({
           value={tags}
           onChange={handleChange}
           input={<OutlinedInput label="Tag" />}
-          renderValue={(selected) => selected.join(", ")}
+          renderValue={(selected) => selected.join(', ')}
         >
           {names.map((name) => (
             <MenuItem key={name} value={name}>

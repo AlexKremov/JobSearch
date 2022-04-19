@@ -1,36 +1,37 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getResumes } from "../api/queries";
-import { Level } from "../types/Resume";
-import { ResumeState, setResumes } from "./resumes";
-import { AppState } from "./rootReducer";
-import Resume from "../types/Resume";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getResumes } from '../api/queries';
+import Resume, { Level } from '../types/Resume';
+import { ResumeState, setResumes } from './resumes';
+import { AppState } from './rootReducer';
 
 export type FilterType = {
-  experience: string;
-  level: keyof typeof Level | "";
-  tags: string[];
+  experience: string
+  level: keyof typeof Level | ''
+  tags: string[]
 };
 
 type Props = {
-  handleSelectTags(value: string[]): void;
-  handleSelectExperience(value: string): void;
-  handleSelectlevel(value: keyof typeof Level | ""): void;
-  handleChangePage(value: number): void;
-  total: number;
-  search: FilterType;
-  list: Resume[];
+  handleSelectTags(value: string[]): void
+  handleSelectExperience(value: string): void
+  handleSelectlevel(value: keyof typeof Level | ''): void
+  handleChangePage(value: number): void
+  total: number
+  search: FilterType
+  list: Resume[]
 };
 
 export const useResumes = (): Props => {
   const dispatch = useDispatch();
   const [search, setSearch] = React.useState<FilterType>({
-    level: "",
+    level: '',
     tags: [],
-    experience: "",
+    experience: '',
   });
 
-  const { list } = useSelector<AppState, ResumeState>((state) => state.resumes);
+  const { list } = useSelector<AppState, ResumeState>(
+    (state) => state.resumes
+  );
 
   const [total, setTotal] = React.useState(0);
 
@@ -71,7 +72,7 @@ export const useResumes = (): Props => {
   const handleChangePage = (page: number) => {
     const newSearch = {
       ...search,
-      page: page,
+      page,
     };
 
     setSearch(newSearch);
@@ -82,7 +83,7 @@ export const useResumes = (): Props => {
     });
   };
 
-  const handleSelectlevel = (value: keyof typeof Level | "") => {
+  const handleSelectlevel = (value: keyof typeof Level | '') => {
     const newSearch = {
       ...search,
       level: value,

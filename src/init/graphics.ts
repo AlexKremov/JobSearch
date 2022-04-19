@@ -2,26 +2,26 @@ import Graphics from '../types/Graphics';
 
 export const SET_GRAPHICS = 'SET_GRAPHICS';
 
-export type setGraphicsAction = {
-  type: typeof SET_GRAPHICS;
-  payload: Graphics;
+export type SetGraphicsAction = {
+  type: typeof SET_GRAPHICS
+  payload: Graphics
 };
 
 interface State {
-  graphics: Graphics;
+  graphics: Graphics
 }
 
 const initialState = {
   graphics: {
     salary_medium_per_month: [],
-    activity_count: []
+    activity_count: [],
   },
 };
 
-type Action = setGraphicsAction;
+type Action = SetGraphicsAction;
 
 export type GraphicsState = {
-  graphics: Graphics;
+  graphics: Graphics
 };
 
 export function setGraphics(payload: Graphics): Action {
@@ -31,7 +31,10 @@ export function setGraphics(payload: Graphics): Action {
   };
 }
 
-export const graphics = (state: State = initialState, action: Action): State => {
+export const graphics = (
+  action: Action,
+  state: State = initialState
+): State => {
   switch (action.type) {
     case SET_GRAPHICS: {
       return {

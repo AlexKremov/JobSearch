@@ -1,21 +1,24 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Body = styled.div`
-  display: flex;
+    display: flex;
 `;
 
 type Props = {
-  name: string;
-  rating: number;
+  name: string
+  rating: number
 };
 
-const CompaniesLikes = ({ name, rating }: Props) => {
+function CompaniesLikes({ name, rating }: Props) {
   return (
     <Body>
-      <h3>{name}:</h3>
+      <h3>
+        {name}
+        :
+      </h3>
       <h4>{rating}</h4>
     </Body>
   );
-};
+}
 
 export default CompaniesLikes;
