@@ -1,20 +1,20 @@
-import MainLayout from "../layouts/mainlayout";
-import styled from "styled-components";
-import SelectLevel from "../components/SelectLevel";
-import ResumeItem from "../components/ResumeItem";
-import { useResumes } from "../init/useResumes";
-import SelectTags from "../components/SelectTags";
-import SelectExperience from "../components/SelectExperience";
-import Pagination from "@mui/material/Pagination";
+import styled from 'styled-components';
+import Pagination from '@mui/material/Pagination';
+import MainLayout from '../layouts/mainlayout';
+import SelectLevel from '../components/SelectLevel';
+import ResumeItem from '../components/ResumeItem';
+import { useResumes } from '../init/useResumes';
+import SelectTags from '../components/SelectTags';
+import SelectExperience from '../components/SelectExperience';
 
 const Body = styled.div`
-  display: flex;
-  flex-flow: row wrap;
+    display: flex;
+    flex-flow: row wrap;
 `;
 
 const ResumeFilters = styled.div`
-  padding-left: 45%;
-  display: block;
+    padding-left: 45%;
+    display: block;
 `;
 
 export default function Resumes() {
@@ -36,13 +36,19 @@ export default function Resumes() {
     <MainLayout>
       <Body>
         <div>
-          <Pagination count={Math.ceil(total / 25)} onChange={handleChange} />
+          <Pagination
+            count={Math.ceil(total / 25)}
+            onChange={handleChange}
+          />
           {list.map((resume) => (
             <ResumeItem key={resume.id} {...resume} />
           ))}
         </div>
         <ResumeFilters>
-          <SelectTags tags={search.tags} handleSelectTags={handleSelectTags} />
+          <SelectTags
+            tags={search.tags}
+            handleSelectTags={handleSelectTags}
+          />
           <SelectLevel
             level={search.level}
             handleSelectlevel={handleSelectlevel}
@@ -56,5 +62,3 @@ export default function Resumes() {
     </MainLayout>
   );
 }
-
-

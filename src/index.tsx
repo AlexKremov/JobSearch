@@ -1,14 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Companies from "./pages/companies";
-import Resumes from "./pages/resumes";
-import Main from "./pages/main";
-import reportWebVitals from "./reportWebVitals";
-import { store } from "./init/store";
-import { Provider } from "react-redux";
-import Salaries from "./pages/salaries";
-import Profile from "./pages/profile";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import Companies from './pages/companies';
+import Resumes from './pages/resumes';
+import Main from './pages/main';
+import reportWebVitals from './reportWebVitals';
+import { store } from './init/store';
+import Salaries from './pages/salaries';
+import Profile from './pages/profile';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -24,7 +24,7 @@ ReactDOM.render(
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 
 reportWebVitals();

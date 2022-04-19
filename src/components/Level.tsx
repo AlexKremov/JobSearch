@@ -13,8 +13,8 @@ export default function LevelSelect() {
   };
 
   return (
-    <Box sx={{ minWidth: 80 , m: 1}}>
-      <FormControl size='small' fullWidth>
+    <Box sx={{ minWidth: 80, m: 1 }}>
+      <FormControl size="small" fullWidth>
         <InputLabel id="demo-simple-select-label">Level</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -23,9 +23,9 @@ export default function LevelSelect() {
           label="Age"
           onChange={handleChange}
         >
-          <MenuItem value={'Junior'}>Junior</MenuItem>
-          <MenuItem value={'Middle'}>Middle</MenuItem>
-          <MenuItem value={'Senior'}>Senior</MenuItem>
+          <MenuItem value="Junior">Junior</MenuItem>
+          <MenuItem value="Middle">Middle</MenuItem>
+          <MenuItem value="Senior">Senior</MenuItem>
         </Select>
       </FormControl>
     </Box>

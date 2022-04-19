@@ -1,7 +1,7 @@
 type Activity = {
-    [key: string]: number
-  }
+  [key: string]: number
+};
 export default interface Graphics {
-    salary_medium_per_month: string[];
-    activity_count: Activity[]
-  }
+  salary_medium_per_month: string[]
+  activity_count: Activity[]
+}

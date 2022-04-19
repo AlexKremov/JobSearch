@@ -1,19 +1,19 @@
-import * as React from "react";
-import styled from "styled-components";
+import * as React from 'react';
+import styled from 'styled-components';
 
 const InpurSearch = styled.input`
-  height: 40px;
-  margin-left: 10px;
-  ::-webkit-outer-spin-button,
-  ::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
+    height: 40px;
+    margin-left: 10px;
+    ::-webkit-outer-spin-button,
+    ::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
 `;
 
 type Props = {
-  experience: string;
-  handleSelectExperience(value: string): void;
+  experience: string
+  handleSelectExperience(value: string): void
 };
 
 export default function ExperienceSelect({
