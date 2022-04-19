@@ -16,12 +16,12 @@ type Props = {
 export default function LikeButton(props: Props) {
   const [disabled, setDisabled] = React.useState(false);
 
-  const handleChange1 = () => {
+  const onLike = () => {
     setDisabled(true);
     props.handleLike();
   };
 
-  const handleChange2 = () => {
+  const onDislike = () => {
     setDisabled(true);
     props.handleDislike();
   };
@@ -29,14 +29,14 @@ export default function LikeButton(props: Props) {
     <Body>
       <IconButton
         disabled={disabled}
-        onClick={handleChange1}
+        onClick={onLike}
         disableFocusRipple
       >
         <ThumbUpIcon />
       </IconButton>
       <IconButton
         disabled={disabled}
-        onClick={handleChange2}
+        onClick={onDislike}
         disableFocusRipple
       >
         <ThumbDownIcon />

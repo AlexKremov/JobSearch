@@ -4,14 +4,14 @@ import Avatar from '@mui/material/Avatar';
 import Resume from '../types/Resume';
 
 const Body = styled.div`
-    width: 300%;
+  width: 300%;
 `;
 
 const ResumeItem: FC<Resume> = ({
   name, level, tags, experience, avatar
 }) => (
   <Body>
-    <Avatar alt="Remy Sharp" src={avatar} sx={{ width: 88, height: 88 }} />
+    <Avatar alt='Remy Sharp' src={avatar} sx={{ width: 88, height: 88 }} />
     <h2>{name}</h2>
 
     <h3>{level}</h3>
